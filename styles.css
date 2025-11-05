@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background: #1A1C19;
+    font-family: 'Inter', sans-serif;
+    padding: 18px;
+    min-height: 100vh;
+    color: #333333;
+    box-sizing: 100%;
+    height: 100%; 
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border: 1px solid #B1A592;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.logo {
+    background: #323025;
+    color: #B1A592;
+    padding: 13px 40px;
+    border-radius: 50px;
+    font-size: 24px;
+    min-width: 282px;
+    
+    text-align: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #B1A592;
+    border: 1px solid #B1A592;
+    padding: 13px 40px;
+    border-radius: 50px;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.nav-item.active,
+.nav-item:hover,menu:hover, .contact-btn:hover {
+    background: #B1A592;
+    color: #333333;
+}
+
+.contact-btn {
+    margin-left: auto;
+    text-decoration: none;
+    color: #B1A592;
+    border: 1px solid #B1A592;
+    padding: 13px 40px;
+    border-radius: 50px;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.menu {
+    display: none; /* only show on small screens */
+    background: transparent;
+    border: 2px solid #B1A592;
+    color: #B1A592;
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Responsive: on narrower screens hide full nav and show logo (75%) + menu (25%)
+   raise breakpoint so nav collapses before borders overlap */
+@media (max-width: 980px) {
+    .nav-links,
+    .contact-btn {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar {
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+    }
+
+    .logo {
+        min-width: 0;
+        padding: 10px 12px;
+        flex: 0 0 75%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .menu {
+        flex: 0 0 25%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    menu:hover {
+        background: #B1A592;
+        color: #333333;
+    }
+}
+
+/* Slightly larger screens: ensure nav doesn't overlap by allowing wrap or hiding when needed */
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 6px;
+    }
+    .nav-item {
+        padding: 10px 18px;
+        font-size: 18px;
+    }
+}
+
+
+.grid-container {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    /* Default desktop layout */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "large wide wide"
+        "large medium medium-wide";
+}
+
+/* Stack cards vertically on smaller screens */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "large"
+            "wide"
+            "medium"
+            "medium-wide";
+    }
+
+    .large, .wide, .medium, .medium-wide {
+        width: 100%;
+        min-height: 400px; /* Consistent minimum height */
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .card img:not(.circle-img) {
+        height: 300px;
+        object-fit: cover;
+    }
+}
+
+/* Adjust layout for medium-sized screens */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "large wide"
+            "large wide"
+            "medium medium-wide";
+    }
+
+    .large, .wide, .medium, .medium-wide {
+        width: 100%;
+    }
+}
+
+.card {
+    border-radius: 30px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.large {
+    grid-area: large;
+    background: #DFD6C5;
+    /* allow content to size the card; use min-height for visual balance */
+    min-height: 600px;
+}
+
+.wide {
+    grid-area: wide;
+    background: #8E886D;
+    min-height: 320px;
+}
+
+.medium {
+    grid-area: medium;
+    background: #916E58;
+    min-height: 300px;
+}
+
+
+.medium-wide {
+    grid-area: medium-wide;
+    background: #B1A48E;
+    min-height: 300px;
+}
+
+.tag {
+    border: 1px solid #323025;
+    padding: 5px ;
+    border-radius: 50px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+.card-footer {
+    /* place footer after card content; use margin-top:auto when card is flex container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #333333;
+    padding: 12px 30px 0 30px;
+    margin-top: 16px;
+}
+
+.arrow {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* circular avatar used next to headings */
+.circle-img,
+#circular-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 500px;
+    object-fit: cover;
+    flex: 0 0 64px;
+    margin-left: 12px;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* If the heading and avatar are placed in a flex row, ensure heading grows */
+.heading-with-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.heading-with-avatar h2 {
+    margin: 0;
+    flex: 1 1 auto;
+}
